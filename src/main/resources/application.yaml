@@ -1,2 +1,10 @@
 server:
   port: 800
+
+github:
+  client:
+    id: 146dfe1b54d1a3dce100
+    secret: c302b2b6d9504e91972d9c0dd3e28d26292fdfe9
+  redirect:
+    uri: http://localhost:800/callback
+

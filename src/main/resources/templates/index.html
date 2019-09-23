@@ -29,7 +29,11 @@
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">登录</a></li>
+                <li>
+                    <!-- GitHub访问容易存在问题， -->
+                    <!--<a href="https://github.com/login/oauth/authorize?client_id=146dfe1b54d1a3dce100&redirect_uri=http://localhost:800/callback&scope=user&state=1">登录</a>-->
+                    <a href="http://localhost:800/callback?code=84ce80502faa9ea7a212&state=1">登录</a>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">我<span class="caret"></span></a>
