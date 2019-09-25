@@ -12,6 +12,8 @@
 9. [OKHttp](https://square.github.io/okhttp)
 10. [H2 Quickstart](http://www.h2database.com/html/quickstart.html)
 11. [Spring Boot 官方文档](https://docs.spring.io/spring-boot/docs/2.1.6.RELEASE/reference/htmlsingle/)
+12. [flywaydb QuickStart](https://flywaydb.org/getstarted/firststeps/maven#creating-the-first-migration)
+
 
 ## 工具
 1. [git 下载](https://git-scm.com/downloads)
