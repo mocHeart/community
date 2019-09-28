@@ -56,6 +56,7 @@ public class GithubProvider {
             githubUser.setId(1001L);
             githubUser.setName("MOC同学");
             githubUser.setBio("Code To Do");
+            githubUser.setAvatarUrl("http://t1.hxzdhn.com/uploads/tu/201909/9999/3a813cfa87.jpg");
             System.out.println("GitHub获取用户失败，采用离线数据：{Id:1001, Name:MOC同学, BIo:Code To Do}");
             return githubUser;
             // e.printStackTrace();

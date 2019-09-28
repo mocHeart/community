@@ -12,12 +12,13 @@
 9. [OKHttp](https://square.github.io/okhttp)
 10. [H2 Quickstart](http://www.h2database.com/html/quickstart.html)
 11. [Spring Boot 官方文档](https://docs.spring.io/spring-boot/docs/2.1.6.RELEASE/reference/htmlsingle/)
-12. [flywaydb QuickStart](https://flywaydb.org/getstarted/firststeps/maven#creating-the-first-migration)
 
 
 ## 工具
 1. [git 下载](https://git-scm.com/downloads)
-2. [Visual Paradigm](https://www.visual-paradigm.com/)
+2. [Visual Paradigm](https://www.visual-paradigm.com)
+3. [flywaydb](https://flywaydb.org/getstarted/firststeps/maven#creating-the-first-migration)
+4. [Lombok](https://projectlombok.org/features/all)
 
 ## 脚本
 1. User表DDL
@@ -34,4 +35,28 @@ create table USER
 	primary key (ID)
 );
 ```
-
+2. User表增加bio字段
+```sql
+alter table USER add bio varchar(256);
+```
+3. Question表DDL
+```sql
+create table QUESTION
+(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	title VARCHAR(50),
+	description TEXT,
+	gmt_create BIGINT,
+	gmt_modified BIGINT,
+	creator INT,
+	comment_count INT DEFAULT 0,
+	view_count INT DEFAULT 0,
+	like_count INT DEFAULT 0,
+	tag VARCHAR(256)
+);
+```
+4. User表增加头像地址avatar_url字段
+```sql
+alter table USER
+add avatar_url varchar(128) null;
+```
