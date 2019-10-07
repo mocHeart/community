@@ -11,8 +11,8 @@
 8. [GitHub OAuth2](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps)
 9. [OKHttp](https://square.github.io/okhttp)
 10. [H2 Quickstart](http://www.h2database.com/html/quickstart.html)
-11. [Spring Boot 官方文档](https://docs.spring.io/spring-boot/docs/2.1.6.RELEASE/reference/htmlsingle/)
-
+11. [Spring Boot 官方文档](https://docs.spring.io/spring-boot/docs/2.1.6.RELEASE/reference/htmlsingle)
+12. [Thymeleaf doc](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#introducing-thymeleaf)
 
 ## 工具
 1. [git 下载](https://git-scm.com/downloads)
