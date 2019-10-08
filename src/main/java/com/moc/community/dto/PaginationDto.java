@@ -41,7 +41,7 @@ public class PaginationDto {
             if (page - i > 0) {
                 pages.add(0, page - i);
             }
-            if (page + i < totalPage) {
+            if (page + i <= totalPage) {
                 pages.add(page + i);
             }
         }
