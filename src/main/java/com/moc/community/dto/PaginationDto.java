@@ -1,6 +1,5 @@
 package com.moc.community.dto;
 
-import com.moc.community.dao.Question;
 import lombok.Data;
 
 import java.util.ArrayList;
