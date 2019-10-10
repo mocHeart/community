@@ -30,9 +30,14 @@
                     </a>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading" th:text="${question.title}">怎么快速学会 SpringBoot开发...</h4>
+                    <h4 class="media-heading">
+                        <a th:href="@{'/question/'+${question.id}}" th:text="${question.title}"></a>
+                    </h4>
                     <span th:text="${question.description}">点击进入看 MOC 社区教程</span><br>
-                    <span class="text-desc"><span th:text="${question.commentCount}">0</span> 个回复 • <span th:text="${question.viewCount}">31</span> 次浏览 • <span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}">2 小时前</span></span>
+                    <span class="text-desc"><span th:text="${question.commentCount}">0</span>
+                        个回复 • <span th:text="${question.viewCount}">31</span>
+                        次浏览 • <span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}">2 小时前</span>
+                    </span>
                 </div>
             </div>
             <!-- 分页栏 -->
