@@ -18,3 +18,5 @@ spring:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+  type-aliases-package: com.moc.community.mapper
+  mapper-locations: classpath:mapper/*.xml

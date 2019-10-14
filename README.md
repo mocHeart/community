@@ -60,3 +60,8 @@ create table QUESTION
 alter table USER
 add avatar_url varchar(128) null;
 ```
+5. bash
+```bash
+mvn flyway:migrate
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+```
