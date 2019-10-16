@@ -7,6 +7,7 @@ import com.moc.community.dto.PaginationDto;
 import com.moc.community.dto.QuestionDto;
 import com.moc.community.exception.CustomizeErrorCodeEnum;
 import com.moc.community.exception.CustomizeException;
+import com.moc.community.mapper.QuestionExtMapper;
 import com.moc.community.mapper.QuestionMapper;
 import com.moc.community.mapper.UserMapper;
 import org.apache.ibatis.session.RowBounds;
@@ -22,6 +23,9 @@ public class QuestionService {
 
     @Autowired
     private QuestionMapper questionMapper;
+
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
 
     @Autowired
     private UserMapper userMapper;
@@ -108,5 +112,12 @@ public class QuestionService {
             }
 
         }
+    }
+
+    public void incView(Integer id) {
+        Question question = new Question();
+        question.setId(id);
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
     }
 }
