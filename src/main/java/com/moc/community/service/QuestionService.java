@@ -5,6 +5,8 @@ import com.moc.community.dao.QuestionExample;
 import com.moc.community.dao.User;
 import com.moc.community.dto.PaginationDto;
 import com.moc.community.dto.QuestionDto;
+import com.moc.community.exception.CustomizeErrorCodeEnum;
+import com.moc.community.exception.CustomizeException;
 import com.moc.community.mapper.QuestionMapper;
 import com.moc.community.mapper.UserMapper;
 import org.apache.ibatis.session.RowBounds;
@@ -77,6 +79,9 @@ public class QuestionService {
 
     public QuestionDto getById(Integer id) {
         Question question = questionMapper.selectByPrimaryKey(id);
+        if (question == null) {
+            throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
+        }
         QuestionDto questionDto = new QuestionDto();
         BeanUtils.copyProperties(question, questionDto);
         User user = userMapper.selectByPrimaryKey(question.getCreator());
@@ -97,7 +102,11 @@ public class QuestionService {
             updateQuestion.setTag(question.getTag());
             QuestionExample questionExample = new QuestionExample();
             questionExample.createCriteria().andIdEqualTo(question.getId());
-            questionMapper.updateByExampleSelective(updateQuestion, questionExample);
+            int updated = questionMapper.updateByExampleSelective(updateQuestion, questionExample);
+            if (updated != 1) {
+                throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
+            }
+
         }
     }
 }
