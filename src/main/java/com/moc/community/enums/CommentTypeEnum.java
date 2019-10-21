@@ -1,7 +1,7 @@
 package com.moc.community.enums;
 
 public enum CommentTypeEnum {
-    Question(1),
+    QUESTION(1),
     COMMENT(2),
     ;
 
