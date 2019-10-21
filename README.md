@@ -19,6 +19,7 @@
 2. [Visual Paradigm](https://www.visual-paradigm.com)
 3. [flywaydb](https://flywaydb.org/getstarted/firststeps/maven#creating-the-first-migration)
 4. [Lombok](https://projectlombok.org/features/all)
+5. [Postman谷歌插件](https://chrome.google.com/webstore/detail/tabbed-postman-rest-clien/coohjcphdfgbiolnekdpbcijmhambjff)
 
 ## 脚本
 1. User表DDL
@@ -60,8 +61,40 @@ create table QUESTION
 alter table USER
 add avatar_url varchar(128) null;
 ```
+
+5. COMMENT表DDL
+```sql
+CREATE TABLE COMMENT
+(
+	id BIGINT AUTO_INCREMENT PRIMARY KEY ,
+	parent_id BIGINT NOT NULL,
+	type INT NOT NULL, -- 父类类型
+	commentator INT NOT NULL,
+	gmt_create BIGINT NOT NULL,
+	gmt_modified BIGINT NOT NULL,
+	like_count BIGINT DEFAULT 0,  -- 点赞数
+);
+
+-- 增加字段
+ALTER TABLE COMMENT
+	ADD content VARCHAR(1024) NULL;
+```
+
+6. 改变表的ID字段等的类型
+```sql
+ALTER TABLE QUESTION ALTER COLUMN ID BIGINT DEFAULT NOT NULL ;
+ALTER TABLE QUESTION ALTER COLUMN CREATOR BIGINT DEFAULT NOT NULL ;
+ALTER TABLE USER ALTER COLUMN ID BIGINT DEFAULT NOT NULL ;
+ALTER TABLE COMMENT ALTER COLUMN COMMENTATOR BIGINT DEFAULT NOT NULL ;
+```
+
 5. bash
-```bash
+```shell
+// 更新数据库
 mvn flyway:migrate
+// mybatis-generator 自动生成
 mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 ```
+
+## 注意
+1. 数据库中存在 text 等字段映射到 Java String 上时，在 Mybatis Generator 中要使用带 WithBLOBs 的方法进行查询。

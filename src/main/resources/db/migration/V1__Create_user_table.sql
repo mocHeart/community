@@ -1,6 +1,6 @@
 create table USER
 (
-	ID INT auto_increment primary key not null,
+	ID BIGINT AUTO_INCREMENT primary key not null,
 	ACCOUNT_ID VARCHAR(128),
 	NAME VARCHAR(64),
 	TOKEN CHAR(36),
