@@ -5,10 +5,7 @@ import com.moc.community.dto.CommentDto;
 import com.moc.community.enums.CommentTypeEnum;
 import com.moc.community.exception.CustomizeErrorCodeEnum;
 import com.moc.community.exception.CustomizeException;
-import com.moc.community.mapper.CommentMapper;
-import com.moc.community.mapper.QuestionExtMapper;
-import com.moc.community.mapper.QuestionMapper;
-import com.moc.community.mapper.UserMapper;
+import com.moc.community.mapper.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +22,9 @@ public class CommentService {
 
     @Autowired
     private CommentMapper commentMapper;
+
+    @Autowired
+    private CommentExtMapper commentExtMapper;
 
     @Autowired
     private QuestionMapper questionMapper;
@@ -52,6 +52,12 @@ public class CommentService {
                 throw new CustomizeException(CustomizeErrorCodeEnum.COMMENT_NOT_FOUND);
             }
             commentMapper.insert(comment);
+
+            // 增加评论数 (增加到父评论或问题上)
+            Comment parentComment = new Comment();
+            parentComment.setId(comment.getParentId());
+            parentComment.setCommentCount(1);
+            commentExtMapper.incCommentCount(parentComment);
         } else {
             // 回复问题
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
@@ -65,11 +71,11 @@ public class CommentService {
 
     }
 
-    public List<CommentDto> listByQuestionId(Long id) {
+    public List<CommentDto> listByTargetId(Long id, CommentTypeEnum type) {
         CommentExample commentExample = new CommentExample();
         commentExample.createCriteria()
                 .andParentIdEqualTo(id)
-                .andTypeEqualTo(CommentTypeEnum.QUESTION.getType());
+                .andTypeEqualTo(type.getType());
         commentExample.setOrderByClause("gmt_create desc");
         List<Comment> comments = commentMapper.selectByExample(commentExample);
         if (comments.size() == 0) {

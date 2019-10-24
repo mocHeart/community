@@ -1,8 +1,8 @@
 package com.moc.community.controller;
 
-import com.moc.community.dto.CommentCreateDto;
 import com.moc.community.dto.CommentDto;
 import com.moc.community.dto.QuestionDto;
+import com.moc.community.enums.CommentTypeEnum;
 import com.moc.community.service.CommentService;
 import com.moc.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class QuestionController {
     public String question(@PathVariable(name = "id") Long id, Model model) {
 
         QuestionDto questionDto = questionService.getById(id);
-        List<CommentDto> comments = commentService.listByQuestionId(id);
+        List<CommentDto> comments = commentService.listByTargetId(id, CommentTypeEnum.QUESTION);
 
         // 累加阅读数
         questionService.incView(id);

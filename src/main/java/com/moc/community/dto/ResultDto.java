@@ -5,10 +5,11 @@ import com.moc.community.exception.CustomizeException;
 import lombok.Data;
 
 @Data
-public class ResultDto {
+public class ResultDto<T> {
 
     private Integer code;
     private String message;
+    private T data;
 
 
     private static ResultDto errorOf(Integer code, String message) {
@@ -31,6 +32,14 @@ public class ResultDto {
         ResultDto resultDto = new ResultDto();
         resultDto.setCode(200);
         resultDto.setMessage("请求成功");
+        return resultDto;
+    }
+
+    public static <T> ResultDto<T> okOf(T t) {
+        ResultDto<T> resultDto = new ResultDto<>();
+        resultDto.setCode(200);
+        resultDto.setMessage("请求成功");
+        resultDto.setData(t);
         return resultDto;
     }
 

@@ -1,9 +1,11 @@
 package com.moc.community.controller;
 
 import com.moc.community.dao.Comment;
+import com.moc.community.dto.CommentDto;
 import com.moc.community.dto.ResultDto;
 import com.moc.community.dao.User;
 import com.moc.community.dto.CommentCreateDto;
+import com.moc.community.enums.CommentTypeEnum;
 import com.moc.community.exception.CustomizeErrorCodeEnum;
 import com.moc.community.service.CommentService;
 import org.apache.commons.lang3.StringUtils;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class CommentController {
@@ -42,8 +45,17 @@ public class CommentController {
         comment.setGmtCreate(System.currentTimeMillis());
         comment.setCommentator(1L);
         comment.setLikeCount(0L);
+        comment.setCommentCount(0);
         commentService.insert(comment);
         return ResultDto.okOf();
+    }
+
+
+    @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public ResultDto<List<CommentDto>> comments(@PathVariable(name = "id") Long id) {
+        List<CommentDto> commentDtos = commentService.listByTargetId(id, CommentTypeEnum.COMMENT);
+        return ResultDto.okOf(commentDtos);
     }
 
 }
