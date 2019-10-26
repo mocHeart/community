@@ -107,6 +107,18 @@ body {
     margin-right: 5px;
 }
 
+.publish-tag-tab {
+    display: none;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.publish-tag-tab .label-info {
+    white-space: normal;
+    margin: 5px 5px;
+    display: inline-block;
+}
+
 .question-related {
     line-height: 20px;
     font-size: 14px;
@@ -117,4 +129,8 @@ body {
 
 .question-pic {
     width: 100%;
+}
+
+.tab-pane {
+    padding-top: 10px;
 }
