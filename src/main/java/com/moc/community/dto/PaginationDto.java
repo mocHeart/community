@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class PaginationDto {
+public class PaginationDto<T> {
 
-    private List<QuestionDto> questions;
+    private List<T> data;  // 问题列表或通知列表
     private boolean showPrevious;
     private boolean showFirstPage;
     private boolean showNext;

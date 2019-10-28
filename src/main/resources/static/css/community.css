@@ -134,3 +134,8 @@ body {
 .tab-pane {
     padding-top: 10px;
 }
+
+.unread-label {
+    color: red;
+    text-shadow: 1px 0px black;
+}
