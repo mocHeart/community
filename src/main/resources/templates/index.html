@@ -43,7 +43,8 @@
                     <h4 class="media-heading">
                         <a th:href="@{'/question/'+${question.id}}" th:text="${question.title}"></a>
                     </h4>
-                    <span th:text="${question.description}">点击进入看 MOC 社区教程</span><br>
+                    <!-- 显示不需要 -->
+                    <!--<span th:text="${question.description}">点击进入看 MOC 社区教程</span><br>-->
                     <span class="text-desc"><span th:text="${question.commentCount}">0</span>
                         个回复 • <span th:text="${question.viewCount}">31</span>
                         次浏览 • <span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}">2 小时前</span>

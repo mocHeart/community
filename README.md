@@ -13,6 +13,8 @@
 10. [H2 Quickstart](http://www.h2database.com/html/quickstart.html)
 11. [Spring Boot 官方文档](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-config-interceptors)
 12. [Thymeleaf doc](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#introducing-thymeleaf)
+13. [Moment.js 文档](http://momentjs.cn/docs/)
+14. [MarkDown 插件](https://pandao.github.io/editor.md/)
 
 ## 工具
 1. [git 下载](https://git-scm.com/downloads)
