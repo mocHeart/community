@@ -20,3 +20,13 @@ mybatis:
     map-underscore-to-camel-case: true
   type-aliases-package: com.moc.community.mapper
   mapper-locations: classpath:mapper/*.xml
+
+logging:
+  level:
+    root: info
+    com.moc.community.mapper: debug
+
+  file: C:/Users/Administrator/Desktop/logs/community.log
+  file.max-size: 200MB    # 日志文件最大10MB
+  file.max-history: 30    # 仅保留近三天的日志
+
