@@ -2,6 +2,7 @@ package com.moc.community.mapper;
 
 import com.moc.community.dao.Question;
 import com.moc.community.dao.QuestionExample;
+import com.moc.community.dto.QuestionQueryDto;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
@@ -13,4 +14,8 @@ public interface QuestionExtMapper {
     int incCommentCount(Question record);
 
     List<Question> selectRelated(Question question);
+
+    Integer countBySearch(QuestionQueryDto questionQueryDto);
+
+    List<Question> selectBySearch(QuestionQueryDto questionQueryDto);
 }

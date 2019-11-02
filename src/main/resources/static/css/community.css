@@ -139,3 +139,7 @@ body {
     color: red;
     text-shadow: 1px 0px black;
 }
+
+.footer {
+    text-align: center;
+}

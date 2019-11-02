@@ -5,6 +5,7 @@ import com.moc.community.dao.QuestionExample;
 import com.moc.community.dao.User;
 import com.moc.community.dto.PaginationDto;
 import com.moc.community.dto.QuestionDto;
+import com.moc.community.dto.QuestionQueryDto;
 import com.moc.community.exception.CustomizeErrorCodeEnum;
 import com.moc.community.exception.CustomizeException;
 import com.moc.community.mapper.QuestionExtMapper;
@@ -33,19 +34,29 @@ public class QuestionService {
     @Autowired
     private UserMapper userMapper;
 
-    public PaginationDto list(Integer page, Integer size) {
+    public PaginationDto list(String search, Integer page, Integer size) {
 
+        if (StringUtils.isNotBlank(search)) {
+            String[] tags = StringUtils.split(search, " ");
+            search = String.join("|", tags);
+        }
         PaginationDto<QuestionDto> paginationDto = new PaginationDto<>();
-        Integer totalCount = (int) questionMapper.countByExample(new QuestionExample());
+
+        QuestionQueryDto questionQueryDto = new QuestionQueryDto();
+        questionQueryDto.setSearch(search);
+        Integer totalCount = questionExtMapper.countBySearch(questionQueryDto);
         paginationDto.setPagination(totalCount, page, size);
 
         if (page < 1) page = 1;
         if (page > paginationDto.getTotalPage()) page = paginationDto.getTotalPage();
 
         Integer offset = size * (page - 1);
-        QuestionExample questionExample = new QuestionExample();
-        questionExample.setOrderByClause("gmt_create desc");
-        List<Question> questions = questionMapper.selectByExampleWithBLOBsWithRowbounds(questionExample, new RowBounds(offset, size));
+        //QuestionExample questionExample = new QuestionExample();
+        //.setOrderByClause("gmt_create desc");
+
+        questionQueryDto.setSize(size);
+        questionQueryDto.setPage(page);
+        List<Question> questions = questionExtMapper.selectBySearch(questionQueryDto);
         List<QuestionDto> questionDtos = new ArrayList<>();
 
         for (Question question : questions) {
